@@ -3,33 +3,47 @@
 
 **Pseudofy** adalah platform berbasis AI untuk menghasilkan _pseudocode_ dari kode sumber atau deskripsi masalah. Dengan antarmuka modern dan kemudahan integrasi berbagai bahasa pemrograman, Pseudofy mempermudah developer dalam membuat, memodifikasi, dan memahami algoritma.
 
-🔗 **Live Demo**: [Pseudofy](https://pseudofy.rozhak-dev.my.id/)
+🔗 **Live Demo**: [Pseudofy](https://pseudofy.rozhak.biz.id/)
 
 ## 🚀 Fitur Utama
 - **Desain Responsif**: Dibangun dengan HTML, CSS, dan JavaScript, sehingga nyaman diakses dari perangkat apa pun.
 - **Konversi Otomatis Kode ke Pseudocode**: Mendukung berbagai bahasa pemrograman seperti Python, Golang, JavaScript, dan banyak lagi.
-- **Backend Kuat dengan Flask**: Memastikan pemrosesan cepat dan andal.
+- **Backend Kuat dengan Django**: Memastikan pemrosesan cepat dan andal.
 - **Dukungan Berbagai Bahasa Pemrograman**: Termasuk Python, Java, Golang, JavaScript, TypeScript, dan lainnya.
 - **UI Intuitif**: Mudah digunakan bahkan untuk pemula.
 
 ## 📂 Struktur Proyek
 ```plaintext
 Pseudofy/
-├── app
-│   ├── __init__.py        # Inisialisasi modul Flask
-│   ├── marker.py          # File utama untuk generate pseudocode menggunakan AI
-│   ├── routes.py          # Konfigurasi rute dan request handler
-│   ├── static
+├── app_pseudofy
+│   ├── __init__.py        # Inisialisasi aplikasi Django
+│   ├── admin.py           # Konfigurasi admin panel
+│   ├── apps.py            # Konfigurasi aplikasi
+│   ├── marker.py          # Logika utama untuk menghasilkan pseudocode menggunakan AI
+│   ├── migrations         # Folder migrasi database
+│   │   └── __init__.py    # Inisialisasi migrasi
+│   ├── models.py          # Model database
+│   ├── static             # Berkas statis
 │   │   ├── css
-│   │   │   └── styles.css # Gaya tampilan frontend
-│   │   ├── js
-│   │   │   └── scripts.js # Logika dan fungsi JavaScript
-│   │   └── pseudofy.ico   # Favicon
-│   └── templates
-│       └── index.html     # Halaman utama aplikasi
-├── config.py              # Konfigurasi aplikasi
+│   │   │   └── style.css  # Gaya tampilan frontend
+│   │   ├── icons
+│   │   │   └── favicon.ico # Ikon aplikasi
+│   │   └── js
+│   │       └── app.js     # Logika dan fungsi JavaScript
+│   ├── templates
+│   │   └── index.html     # Halaman utama aplikasi
+│   ├── tests.py           # Pengujian unit
+│   ├── urls.py            # Konfigurasi URL untuk aplikasi
+│   └── views.py           # Logika tampilan dan pengendalian permintaan
+├── db.sqlite3             # Basis data SQLite
+├── manage.py              # Entry point untuk menjalankan aplikasi Django
+├── Pseudofy
+│   ├── __init__.py        # Inisialisasi proyek Django
+│   ├── asgi.py            # Konfigurasi ASGI
+│   ├── settings.py        # Pengaturan utama proyek
+│   ├── urls.py            # URL routing proyek
+│   └── wsgi.py            # Konfigurasi WSGI
 ├── requirements.txt       # Daftar dependensi Python
-└── run.py                 # Entry point untuk menjalankan aplikasi
 ```
 
 ## 📋 Cara Instalasi dan Penggunaan
@@ -42,19 +56,19 @@ Pseudofy/
     ```bash
     pip install -r requirements.txt
     ```
-3. **Jalankan aplikasi Flask**:
+3. **Jalankan aplikasi Django**:
     ```bash
-    python run.py
+    python manage.py runserver
     ```
 4. **Akses aplikasi**:
-Buka browser dan kunjungi:
+    Buka browser dan kunjungi:
     ```
-    http://127.0.0.1:5000
+    http://127.0.0.1:8000
     ```
 
 ## 🛠️ Teknologi yang Digunakan
 - Frontend: HTML5, CSS3, JavaScript
-- Backend: Flask (Python)
+- Backend: Django (Python)
 - Hosting: [Anymhost](https://anymhost.id/)
 - Version Control: Git & GitHub
 
@@ -93,7 +107,7 @@ Buka browser dan kunjungi:
 ![FunPic_20241023](https://github.com/user-attachments/assets/557dc12f-3061-42c1-8f9b-d61b796b3ce9)
 
 ## ⚠️ Penanganan Kesalahan
-Jika terjadi pesan "**Error processing request!**", Anda bisa mencoba melakukan generate ulang.
+Jika terjadi pesan "**Failed to fetch pseudocode after 5 attempts!**", Anda bisa mencoba melakukan generate ulang.
 Hal ini bisa terjadi karena:
 
 - Permintaan terlalu kompleks untuk diproses dalam satu kali percobaan.
