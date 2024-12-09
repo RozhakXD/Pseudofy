@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudofy - AI Pseudocode Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'icons/favicon.ico' %}">
+</head>
+<body class="bg-gradient-to-br from-blue-800 via-purple-800 to-gray-900 min-h-screen flex flex-col text-white">
+    <!-- Header -->
+    <header class="w-full bg-white bg-opacity-10 glass py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Pseudofy</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="/" class="text-white hover:text-purple-300">Home</a></li>
+                    <li><a href="#" id="aboutBtn" class="text-white hover:text-purple-300">About</a></li>
+                    <li><a href="https://trakteer.id/rozhak_official/tip" class="text-white hover:text-purple-300" target="_blank">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 flex-grow">
+        <div class="w-11/12 lg:w-3/4 bg-white bg-opacity-10 p-8 rounded-lg glass mx-auto mt-10">
+            <form id="pseudofyForm" class="space-y-6">
+                {% csrf_token %}
+                <!-- Input Text -->
+                <div>
+                    <label for="inputText" class="block text-sm font-medium">Source Code / Problem Statement:</label>
+                    <textarea id="inputText" rows="6" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-purple-500" placeholder="Paste your code or write your problem here..."></textarea>
+                </div>
+
+                <!-- Select Language -->
+                <div>
+                    <label for="language" class="block text-sm font-medium">Programming Language:</label>
+                    <select id="language" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-purple-500">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="php">PHP</option>
+                        <option value="csharp">C#</option>
+                        <option value="cpp">C++</option>
+                        <option value="c">C</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="golang">Golang</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="kotlin">Kotlin</option>
+                        <option value="swift">Swift</option>
+                        <option value="sql">SQL</option>
+                        <option value="bash">Bash</option>
+                        <option value="r">R</option>
+                        <option value="matlab">MATLAB</option>
+                        <option value="dart">Dart</option>
+                        <option value="rust">Rust</option>
+                        <option value="haskell">Haskell</option>
+                        <option value="elixir">Elixir</option>
+                        <option value="lua">Lua</option>
+                        <option value="perl">Perl</option>
+                        <option value="visualbasic">Visual Basic</option>
+                        <option value="fortran">Fortran</option>
+                        <option value="delphi">Delphi</option>
+                        <option value="objectivec">Objective-C</option>
+                        <option value="assembly">Assembly</option>
+                        <option value="groovy">Groovy</option>
+                        <option value="powershell">PowerShell</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit" class="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 transition-all text-white font-bold">
+                        Generate Pseudocode
+                    </button>
+                </div>
+            </form>
+
+            <!-- Loading Animation -->
+            <div id="loading" class="hidden flex justify-center items-center mt-8">
+                <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
+            </div>
+
+            <!-- Output Pseudocode -->
+            <div id="result" class="mt-8 hidden">
+                <h2 class="text-xl font-semibold">Generated Pseudocode:</h2>
+                <div class="relative">
+                    <pre id="output" class="bg-gray-800 p-4 mt-4 rounded-lg text-green-400 overflow-auto"></pre>
+                    <button id="copyBtn" class="absolute top-2 right-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded">
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification" class="hidden fixed bottom-4 right-4 px-4 py-2 rounded-lg text-white text-sm shadow-lg"></div>
+    </main>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden z-50">
+        <div class="bg-gradient-to-r from-white via-gray-100 to-gray-50 text-gray-800 p-8 rounded-2xl shadow-2xl max-w-lg w-full relative">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-xl font-bold mb-4 text-purple-600">About Pseudofy</h2>
+            <p class="text-sm leading-relaxed">
+                Pseudofy is an AI-powered pseudocode generator designed to simplify your development process. Just paste your source code or problem statement, select a programming language, and let the AI generate pseudocode for you!
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full bg-white bg-opacity-10 glass py-4 mt-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm text-gray-300">Made with ❤️ by Pseudofy</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
