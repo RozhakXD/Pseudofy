@@ -104,8 +104,7 @@ Pseudofy/
     ```
 
 ## 🖼️ Tangkapan Layar
-![FunPic_20241024](https://github.com/user-attachments/assets/077c5e79-2257-4b77-85f1-9f877635c908)
-![FunPic_20241023](https://github.com/user-attachments/assets/adc21815-7a99-4cd8-940b-4137b9cfab6d)
+![FunPic_20241209](https://github.com/user-attachments/assets/c97d62ad-5030-4a2c-980a-f45f4368e3f6)
 
 ## ⚠️ Penanganan Kesalahan
 Jika terjadi pesan "**Failed to fetch pseudocode after 5 attempts!**", Anda bisa mencoba melakukan generate ulang.
