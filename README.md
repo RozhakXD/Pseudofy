@@ -104,7 +104,8 @@ Pseudofy/
     ```
 
 ## 🖼️ Tangkapan Layar
-![FunPic_20241023](https://github.com/user-attachments/assets/557dc12f-3061-42c1-8f9b-d61b796b3ce9)
+![FunPic_20241024](https://github.com/user-attachments/assets/077c5e79-2257-4b77-85f1-9f877635c908)
+![FunPic_20241023](https://github.com/user-attachments/assets/adc21815-7a99-4cd8-940b-4137b9cfab6d)
 
 ## ⚠️ Penanganan Kesalahan
 Jika terjadi pesan "**Failed to fetch pseudocode after 5 attempts!**", Anda bisa mencoba melakukan generate ulang.
@@ -127,7 +128,7 @@ Jika Anda merasa Pseudofy bermanfaat, Anda dapat mendukung pengembangan lebih la
 Kontribusi terbuka bagi siapa saja. Silakan lakukan fork repository ini dan ajukan pull request.
 
 ## 📝 Lisensi
-Proyek ini dilisensikan di bawah [MIT License](https://github.com/RozhakXD/Pseudofy/blob/main/LICENSE).
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 
 ##
 ❤️ **Terima Kasih!**
